@@ -37,12 +37,12 @@ NoneType: Represents the None object, which is used to indicate the absence of a
 You can also define your custom data types using classes and objects.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Key Differences Table
-Feature	Mutable	Immutable
-Can change in place?	✅ Yes	❌ No
-Memory address change on update?	❌ No (same ID)	✅ Yes (new ID)
-Examples	list, dict, set, bytearray	int, float, str, tuple, frozenset, bytes
-Performance impact	May be faster for in-place edits	May be slower for frequent changes (new objects created)
-✅ Tip:
+Feature	                          Mutable                      	                   Immutable
+Can change in place?	              ✅ Yes	                                      ❌ No
+Memory address change on update?	  ❌ No (same ID)	                            ✅ Yes (new ID)
+Examples	                          list, dict, set, bytearray	                  int, float, str, tuple, frozenset, bytes
+Performance impact	                May be faster for in-place edits	             May be slower for frequent changes (new objects created)
 
+✅ Tip:
 Use mutable types when you need to update data frequently.
 Use immutable types for fixed data or to ensure safety in multi-threaded code.
