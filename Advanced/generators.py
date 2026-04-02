@@ -1,6 +1,6 @@
 """
 Python Generators Tutorial
-Generators are functions that return an iterator object using the 'yield' keyword.
+Generators are functions that return an iterator object using the 'yield' keyword. It produces a value and pauses execution. It returns to its present state when the generator is called again.
 They produce values one at a time and are memory efficient.
 """
 
@@ -30,28 +30,35 @@ for num in count_up_to(5):
     print(num)
 
 
-# Generator Expression
+# Generator Expression - Generator expressions are a concise way to create generators. They are similar to list comprehensions but use parentheses instead of square brackets and are more memory efficient.
 print("\n=== Generator Expression ===")
 gen_expr = (x * 2 for x in range(5))
 print(list(gen_expr))
 
 
-# Generator with State
-def fibonacci(n):
-    """Generator that yields Fibonacci numbers up to n terms"""
-    a, b = 0, 1
-    count = 0
-    while count < n:
-        yield a
-        a, b = b, a + b
-        count += 1
+# Generator with State | Return v/s Yield
+"""
+Regular functions lose their state after returning. Generators retain their state between successive yield statements.
+Usually, a normal funcction exits after the return statement and everything after is not reachable. In comparison, code after yield can still be executed as in the examples below.
+"""
+def yield_example():
+    print("Start")
+    yield 1
+    print("After first yield")
+    yield 2
+    print("After second yield")
 
+gen = yield_example()
 
-print("\n=== Fibonacci Generator ===")
-for fib in fibonacci(7):
-    print(fib, end=" ")
-print()
+for val in gen:
+    print("Received:", val)
 
+# Output:
+  # Start
+  # Received: 1
+  # After first yield
+  # Received: 2
+  # After second yield
 
 # Generator with send() method
 def counter():
