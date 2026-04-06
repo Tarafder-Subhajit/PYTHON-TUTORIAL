@@ -99,3 +99,79 @@ def say_hello(name):
     print(f"Hello, {name}!")
 
 say_hello("Charlie")
+
+# 10. Assign Function to a Variable in Python
+"""In Python, functions are first-class objects, meaning they can be assigned to variables, passed as arguments and returned from other functions. 
+Assigning a function to a variable enables function calls using the variable name, enhancing reusability."""
+
+# ----------------Example 1 -------------
+def a(): # defining a function
+  print("GFG")
+  
+var=a # assigning function to a variable
+
+
+var() # calling the variable
+
+# ----------------Example 2 -------------
+x = 123  # global variable
+
+def display():
+    x = 98  # local variable
+    print(x)  
+    print(globals()['x'])  # accesses global x
+
+print(x) 
+
+a = display  # assign function to a variable
+a()  # call function
+a()  # call function
+
+"""
+O/P->
+123
+98
+123
+98
+123
+"""
+
+# ---------------- Example 3 -------------
+# defining a function
+def fun(num):
+    return num * 40
+
+# assigning function to a variable
+a = fun
+
+# calling function using the variable
+print(a(6))
+print(a(10))
+print(a(100))
+
+# 11. Returning Functions from Functions 
+
+def fun1(name):
+    def fun2():
+        return f"Hello, {name}!"
+    return fun2
+
+# Get the function returned by fun1()
+msg = fun1("Emma")
+
+print(msg())
+
+#The function fun1 creates another function fun2 inside it and returns it. When we call msg(), it runs fun2, which uses the name we passed ("Emma") and returns the greeting "Hello, Emma!", which is then printed.
+
+# Another Example
+def B(st2):
+    print("Good " + st2 + ".")
+
+def A(st1, st2):
+    print(st1 + " and ", end="")  
+    B(st2)  # call B with st2
+
+A("Hello", "Morning")
+
+# O/P -> Hello and Good Morning.
+
