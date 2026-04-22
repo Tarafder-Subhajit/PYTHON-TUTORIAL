@@ -38,6 +38,19 @@ print(otherfunction())
 
 # Arguments in Decorated Functions
 
+def changecase(func):
+  def myinner(x):
+    return func(x).upper()
+  return myinner
+
+@changecase
+def myfunction(nam):
+  return "Hello " + nam
+
+print(myfunction("John"))
+
+# *args and **kwargs
+
 def decorator_name(func):
     def wrapper(*args, **kwargs):
         print("Before execution")
@@ -52,11 +65,61 @@ def add(a, b):
 
 print(add(5, 3))
 
-# Types of Decorators
-# 1. Function Decorators: These are the most common type of decorators that modify the behavior of functions.
-# 2. Class Decorators: These decorators modify the behavior of classes. They can be used to add methods, modify attributes, or change the class's behavior in some way.
-# 3. Method Decorators: These decorators are used to modify the behavior of methods within  a class. They can be used to add functionality to methods, such as logging, timing, or access control.                                  
+# Multiple Decorators
+def changecase(func):
+  def myinner():
+    return func().upper()
+  return myinner
 
-# Class Decorator Example
+def addgreeting(func):
+  def myinner():
+    return "Hello " + func() + " Have a good day!"
+  return myinner
+
+@changecase
+@addgreeting
+def myfunction():
+  return "Tobias"
+
+print(myfunction())
+
+# Preserving Function Metadata & functools.wraps decorator
+
+# Functions in Python has metadata that can be accessed using the __name__ and __doc__ attributes.
+# Normally, a function's name can be returned with the __name__ attribute:
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+
+# But, when a function is decorated, the metadata of the original function is lost.
+# Try returning the name from a decorated function and you will not get the same result:
+def changecase(func):
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+
+# To fix this, Python has a built-in function called functools.wraps that can be used to preserve the original function's name and docstring.
+import functools
+
+def changecase(func):
+  @functools.wraps(func)
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+
+
 
 
