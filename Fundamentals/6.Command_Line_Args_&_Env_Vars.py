@@ -12,6 +12,7 @@ print("Sum =", total)
 print("-------------------------------------------------------------------------------------------------------------------")
 
 #Explanation:
+# python add.py 5 10 15
 
 #sys.argv[0]: script name (e.g., add.py).
 #sys.argv[1:]: user-provided arguments (e.g., numbers).
