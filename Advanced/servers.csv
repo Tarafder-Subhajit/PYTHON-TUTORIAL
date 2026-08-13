@@ -1,0 +1,4 @@
+Server,IP,Environment
+web01,10.0.0.10,Prod
+web02,10.0.0.11,Prod
+db01,10.0.0.20,Dev
